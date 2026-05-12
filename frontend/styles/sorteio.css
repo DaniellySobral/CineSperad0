@@ -255,11 +255,16 @@ ssl- Sorteio Sem Login (toda classe que estiver esse ssl é porque faz parte da 
   color: var(--text-muted);
 }
 
+/* Segunda div de texto — exibida dinamicamente pelo JavaScript após o sorteio.
+   Fica oculta (display: none) por padrão e é mostrada via JS quando o usuário clica em Sortear */
 .ssl-div-texto2 {
   margin-top: 100px;
   display: none;
 }
 
+/* Container do slideshow de filmes sorteados.
+   Os slides são criados dinamicamente pelo JavaScript (SorteioController.js).
+   overflow: hidden garante que apenas o slide ativo fique visível */
 .slideshow-container {
   position: relative;
   width: 100%;
@@ -271,18 +276,23 @@ ssl- Sorteio Sem Login (toda classe que estiver esse ssl é porque faz parte da 
   background-color: var(--bg-white);
 }
 
+/* Cada slide individual — oculto por padrão (display: none).
+   O JS altera para display: block no slide ativo */
 .slide {
   display: none;
   width: 100%;
   height: 100%;
 }
 
+/* Imagem do slide — cobre todo o container mantendo proporções */
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+/* Botões de seta (anterior / próximo) do slideshow.
+   Posicionados absolutamente no centro vertical do container */
 .arrow {
   position: absolute;
   top: 50%;
@@ -298,49 +308,58 @@ ssl- Sorteio Sem Login (toda classe que estiver esse ssl é porque faz parte da 
   z-index: 10;
 }
 
+/* Escurece a seta ao passar o mouse */
 .arrow:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+/* Seta anterior — posicionada à esquerda do slideshow */
 .prev {
   left: 10px;
-    width: 50px;         
-    height: 50px;         
-    border-radius: 50%;   
-    display: flex;         
-    align-items: center;   
-    justify-content: center; 
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;      /* Formato circular */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.next{
+
+/* Seta próximo — posicionada à direita do slideshow */
+.next {
   right: 10px;
-    width: 50px;          
-    height: 50px;
-    border-radius: 50%;  
-    display: flex;        
-    align-items: center;   
-    justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;      /* Formato circular */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Contador de slides (ex: "01 de 03") — exibido na parte inferior central do slideshow.
+   O texto é atualizado pelo JavaScript a cada troca de slide */
 .slide-counter {
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    z-index: 10;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);  /* Centraliza horizontalmente */
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 10;
 }
 
+/* Container com duas colunas abaixo do slideshow:
+   esquerda = texto explicativo + botão de acessar listas
+   direita  = imagem de fundo decorativa */
 .filmes-info-container {
-    display: flex;
-    width: 100%;
-    max-width: 1300px; /* 650px + 650px + um pouco de margem */
-    margin: 30px auto;
-    gap: 0; /* Sem espaço entre as colunas para ficarem coladas */
+  display: flex;
+  width: 100%;
+  max-width: 1300px;    /* 650px + 650px + margem */
+  margin: 30px auto;
+  gap: 0;               /* Sem espaço entre as colunas — ficam coladas */
 }
 
 /* Coluna da esquerda */
@@ -355,11 +374,11 @@ ssl- Sorteio Sem Login (toda classe que estiver esse ssl é porque faz parte da 
 .info-col-right {
     width: 650px;
     height: 296px;
-    background-image: url('Icones-Imagens/bannerpequeno.jpeg');
-    background-size: cover; /* Garante que a imagem cubra toda a div */
-    background-position: center; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Evita que a imagem se repita */
-    background-color: var(--card-bg); 
+    background-image: url('/frontend/assets/images/bannerpequeno.jpeg'); /* Imagem de fundo da coluna direita */
+    background-size: cover;        /* Garante que a imagem cubra toda a div */
+    background-position: center;   /* Centraliza a imagem */
+    background-repeat: no-repeat;  /* Evita que a imagem se repita */
+    background-color: var(--card-bg); /* Fallback caso a imagem não carregue */
     display: flex;
     flex-direction: column;
     justify-content: center;

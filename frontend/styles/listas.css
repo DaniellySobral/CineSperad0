@@ -53,7 +53,7 @@
 .div-direita {
   flex: 1; /* Faz com que a div ocupe todo o espaço restante */
   height: 295px; /* Mesma altura da div esquerda */
-  background-image: url(/Icones-Imagens/bannerpequeno.jpeg); /* Imagem de fundo */
+  background-image: url(/frontend/assets/images/bannerpequeno.jpeg); /* Imagem de fundo do banner da div direita */
   background-size: cover; /* Faz com que a imagem cubra toda a div */
   background-position: center; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Evita que a imagem se repita */

@@ -5,29 +5,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recuperação de senha</title>
-  <link rel="stylesheet" href="/CSS/Utilitario.css">
-  <link rel="stylesheet" href="/CSS/Configuracoes.css">
-  <link rel="stylesheet" href="/CSS/RecuperarSenha.css">
+  <link rel="stylesheet" href="/frontend/styles/utilitario.css">
+  <link rel="stylesheet" href="/frontend/styles/configuracoes.css">
+  <link rel="stylesheet" href="/frontend/styles/recuperarSenha.css">
 </head>
 
 <body>
   <!-- Cabeçalho -->
   <div class="divheader">
     <header>
-      <img src="/Icones-Imagens/LogoCinesperado.png" alt="">
+      <img src="/frontend/assets/images/LogoCinesperado.png" alt="">
       <ul class="menu">
-        <li><a href="/HTML/Home.html">Início</a></li>
-        <li><a href="/HTML/SorteioSlogin.html">Sortear</a></li>
-        <li><a href="/HTML/AssistirMaisTarde.html">Listas</a></li>
-        <li><a href="/HTML/SobreNos.html">Sobre nós</a></li>
-        <li><a href="/HTML/Configuracoes.html">Configurações</a></li>
+        <li><a href="/frontend/views/Home.html">Início</a></li>
+        <li><a href="/frontend/views/SorteioSlogin.html">Sortear</a></li>
+        <li><a href="/frontend/views/AssistirMaisTarde.html">Listas</a></li>
+        <li><a href="/frontend/views/SobreNos.html">Sobre nós</a></li>
+        <li><a href="/frontend/views/Configuracoes.html">Configurações</a></li>
       </ul>
       <div class="buttonDiv">
         <div class="buttonHeader button">
-          <h1><a href="/HTML/Login.html">ENTRAR</a></h1>
+          <h1><a href="/frontend/views/Login.html">ENTRAR</a></h1>
         </div>
         <div class="buttonHeader button">
-          <h1><a href="/HTML/Login.html">CRIAR CONTA</a></h1>
+          <h1><a href="/frontend/views/Login.html">CRIAR CONTA</a></h1>
         </div>
       </div>
     </header>
@@ -60,7 +60,7 @@
         <p class="recuperar-p">Um link para alterar a senha foi enviado para o seu e-mail!
 Volte a tela de login e, após a alteração, tente entrar novamente!</p>
         <!-- Botão salvar -->
-        <button class="save-button comeback"><a href="/HTML/Login.html">Voltar ao login</a></button>
+        <button class="save-button comeback"><a href="/frontend/views/Login.html">Voltar ao login</a></button>
         </div>
 
       </div>
@@ -75,9 +75,9 @@ Volte a tela de login e, após a alteração, tente entrar novamente!</p>
       <p>Créditos: Trabalho de Engenharia de Software - Curso de Análise e Desenvolvimento de Sistemas</p>
     </footer>
   </div>
-  <script src="/JAVASCRIPT/theme.js"></script>
-  <script src="/JAVASCRIPT/Configuracoes.js"></script>
-  <script src="/JAVASCRIPT/RecuperarSenha.js"></script>
+  <script src="/frontend/shared/theme.js"></script>
+  <script src="/frontend/controllers/ConfiguracoesController.js"></script>
+  <script src="/frontend/controllers/RecuperarSenhaController.js"></script>
 </body>
 
 </html>

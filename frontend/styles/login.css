@@ -148,6 +148,16 @@ form {
    font-size: 24px;
    text-decoration: none;
    margin: 0 8px;
+   /* Sobrescreve a cor branca global dos links (definida em utilitario.css).
+      Sem isso, o ícone ficaria branco sobre fundo branco — invisível. */
+   color: #555;
+   transition: color 0.3s, border-color 0.3s;
+}
+
+/* Efeito hover: destaca o ícone com a cor vermelha do tema */
+.google-icon a:hover {
+   color: var(--accent-color);
+   border-color: var(--accent-color);
 }
 
 /* ======== CAIXA DE TROCA ENTRE LOGIN / CADASTRO ======== */
