@@ -1,0 +1,270 @@
+/* Reset Global - Remove estilos padrão do navegador */
+* {
+  margin: 0px;           /* Remove margem padrão de todos os elementos */
+  padding: 0px;          /* Remove padding padrão de todos os elementos */
+  border: 0px;           /* Remove borda padrão de todos os elementos */
+  box-sizing: border-box; /* Inclui padding e border no cálculo da largura/altura total */
+  font-family: sans-serif; /* Define fonte padrão para todos os elementos */
+  list-style: none;      /* Remove marcadores de listas */
+}
+
+/* Estrutura básica da página */
+html, body {
+  height: 100%;           /* Garante que html e body ocupem 100% da altura da tela */
+  margin: 0;   /* Remove margem padrão */
+  padding: 0;           
+  display: flex;          /* Transforma body em container flexível */
+  flex-direction: column; /* Alinha elementos em coluna (header > conteúdo > footer) */
+  background-color: var(--backgroundWhite); /* <--- ADICIONE ESTA LINHA */
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+/* Main - conteúdo principal */
+main {
+  flex: 1;               /* Faz o conteúdo principal crescer para preencher o espaço */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;    /* Compensa o header fixo */
+  background-color: inherit;
+}
+
+
+a{
+  text-decoration: none;
+  color: var(--bg-white);
+}
+
+/* ===================================
+   VARIÁVEIS DAS CORES 
+   =================================== */
+:root {
+  /* Cores de botões */
+  --button: #59001c;          /* Vermelho escuro para botões primários */
+  --whiteButton: #ffffff;      /* Branco para botões */
+  --graButton: #737373;        /* Cinza para botões secundários */
+  
+  /* Cores de cards e elementos */
+  --cards: #59001c;            /* Vermelho escuro para cards */
+  --redLetter: #59001c;        /* Vermelho escuro para textos */
+  --redLight: #5f0320;         /* Vermelho claro para hover */
+  
+  /* Cores de texto */
+  --whiteLetter: #ffffff;      /* Branco para textos */
+  --blackletter: #000000;      /* Preto para textos */
+  
+  /* Cores de fundo */
+  --backgroundWhite: #FFFFFF;   /* Branco para fundos */
+  --backgroundDark: #333431;    /* Cinza escuro para fundos */
+  --whiteGray: #D9D9D9;        /* Cinza claro para fundos */
+  
+  /* Outras cores */
+  --shadow: #454545;           /* Cor para sombras */
+  --footerHeader: #000000;     /* Preto para header e footer */
+  
+  /* Variáveis adicionais (não duplicadas) */
+  --bg-dark: #0b0c10;          /* Fundo escuro */
+  --bg-light: #f5f5f5;         /* Fundo claro */
+  --bg-white: #fff;            /* Fundo branco */
+  --text-primary: #222;        /* Texto principal */
+  --text-light: #ccc;          /* Texto claro */
+  --accent-color: #58011c;     /* Cor de destaque */
+  --accent-hover: #a51d47;     /* Cor de destaque (hover) */
+  --card-bg: #eee;             /* Fundo de cards */
+--filter-bg: #C0BFBB;        /* Cor de fundo do container de filtro */
+--border-light: #ddd;         /* Cor de bordas claras */
+--slider-end: #82120E;        /* Cor final do gradiente do slider */
+--text-secondary: #333;       /* Cor de texto secundário */
+--button-hover: #7a0128;     /* Cor de hover do botão */
+--text-muted: #666;          /* Cor de texto suave */
+
+
+}
+
+/* ===================================
+   TEMA ESCURO
+   =================================== */
+
+/* Adiciona a classe .dark-theme ao body para ativar o tema escuro */
+body.dark-theme {
+  /* Sobrescrevemos as variáveis de cores com as versões escuras */
+  --backgroundWhite: #1e1e1e;    /* Fundo principal escuro */
+  --whiteGray: #2a2a2a;          /* Fundo de cards e inputs escuro */
+  --footerHeader: #121212;       /* Header e footer ainda mais escuros */
+  --blackletter: #e0e0e0;        /* Texto principal claro */
+  --whiteLetter: #e0e0e0;        /* Texto branco (agora um cinza claro) */
+  --text-secondary: #939393;     /* Texto secundário mais suave */
+  --shadow: #000000;             /* Sombras mais escuras */
+
+  /* --- VARIÁVEIS USADAS NA HOME (NOVAS) --- */
+  --bg-white: #2a2a2a;           /* Fundo da seção Tutorial */
+  --card-bg: #b3b3b3;            /* Fundo dos cards de passo */
+  --bg-light: #252525;           /* Fundo da seção Features */
+  --text-primary: #e0e0e0;       /* Cor do texto principal (títulos) */
+  --accent-color: #58011c;       /* Cor de destaque (mantém o vermelho) */
+  --accent-hover: #a51d47;       /* Cor de destaque no hover */
+
+}
+
+
+
+/* Para uma transição suave entre os temas */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header - Cabeçalho fixo no topo */
+.divheader {
+  position: fixed;        /* Fixa o header no topo da página */
+  top: 0;                 /* Posiciona no topo */
+  left: 0;                /* Posiciona à esquerda */
+  right: 0;               /* Estende até a direita */
+  z-index: 1000;          /* Garante que fique sobre todos os elementos */
+}
+
+.divheader a {
+  color: inherit;          /* Herda a cor do elemento pai */
+  text-decoration: none;   /* Remove sublinhado de links */
+}
+
+header {
+  display: flex;          /* Transforma header em container flexível */
+  position: relative;     /* Necessário para posicionamento de elementos internos */
+  width: 100%;            /* Ocupa toda a largura */
+  height: 100px;          /* Altura fixa do header */
+  background: var(--footerHeader); /* Cor de fundo preta */
+}
+
+/* Menu de navegação */
+.menu {
+  display: flex;          /* Transforma menu em container flexível */
+  color: var(--whiteLetter); /* Cor do texto branca */
+  margin-right: 490px;    /* Margem direita para posicionamento */
+  margin-top: 40px;        /* Margem superior para alinhamento vertical */
+}
+
+.menu li {
+  margin-right: 15px;      /* Espaçamento entre itens do menu */
+  font-size: 15px;         /* Tamanho da fonte */
+  white-space: nowrap;     /* Impede quebra de linha nos itens */
+}
+
+.menu li:hover {
+  color: var(--redLetter); /* Muda cor para vermelho no hover */
+  cursor: pointer;         /* Muda cursor para pointer */
+}
+
+/* Alinhamento do header */
+header {
+  justify-content: space-between; /* Distribui itens com espaço entre eles */
+}
+
+/* Logotipo */
+header img {
+  display: block;         /* Transforma imagem em bloco */
+  margin-left: 20px;      /* Margem esquerda */
+  padding: 10px;          /* Espaçamento interno */
+}
+
+.divLogo {
+  position: relative;     /* Necessário para posicionamento */
+  display: flex;          /* Transforma em container flexível */
+  margin-top: 70px;       /* Margem superior */
+  margin-left: -185px;    /* Margem negativa esquerda para ajuste fino */
+}
+
+.logo {
+  font-size: 15px;        /* Tamanho da fonte */
+  font-weight: bold;      /* Fonte em negrito */
+}
+
+/* Sistema de botões */
+.button {
+  background-color: var(--button); /* Cor de fundo vermelha */
+  position: flex;          /* Transforma em container flexível */
+  border-radius: 4px;     /* Bordas arredondadas */
+}
+
+.buttonDiv {
+  display: flex;          /* Transforma em container flexível */
+  margin-top: 30px;       /* Margem superior */
+  margin-right: 20px;     /* Margem direita */
+}
+
+.buttonHeader {
+  width: 100px;           /* Largura fixa */
+  height: 30px;           /* Altura fixa */
+  padding: 7px;           /* Espaçamento interno */
+  margin-right: 10px;     /* Espaçamento direito */
+}
+
+.buttonHeader:hover {
+  background: var(--redLight); /* Muda cor no hover */
+  cursor: pointer;         /* Muda cursor para pointer */
+}
+
+.buttonHeader h1 {
+  font-size: 10.4px;      /* Tamanho pequeno da fonte */
+  color: var(--whiteLetter); /* Cor do texto branca */
+  font-weight: bold;      /* Fonte em negrito */
+  white-space: nowrap;    /* Impede quebra de linha */
+  text-align: center;     /* Alinha texto ao centro */
+}
+
+/* Decoração do header - Linha inferior com gradiente repetitivo */
+header::before {
+  content: "";            /* Conteúdo vazio */
+  position: absolute;     /* Posicionamento absoluto */
+  width: 100%;           /* Cobre toda a largura do header */
+  height: 7.3px;         /* Altura da linha decorativa */
+  top: 89px;             /* Posicionamento vertical (100px - 7.3px - padding) */
+  left: 0;                /* Posicionamento à esquerda */
+  
+  /* Cria retângulos brancos repetidos horizontalmente */
+  background: repeating-linear-gradient(
+    to right,             /* Direção do gradiente */
+    white,                /* Cor dos retângulos */
+    white 15.2px,         /* Largura de cada retângulo */
+    transparent 15.2px,   /* Espaço transparente após cada retângulo */
+    transparent 30.4px     /* Distância até o próximo retângulo */
+  );
+}
+
+/* Footer - Rodapé fixo no final */
+.divfooter {
+  margin-top: auto;       /* Empurra footer para o final da página */
+  position: relative;     /* Necessário para posicionamento */
+}
+footer p {
+  color: var(--whiteLetter);
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+footer {
+  flex-shrink: 0;         /* Impede que o footer encolha */
+  width: 100%;            /* Ocupa toda a largura */
+  height: 80px;           /* Altura fixa do footer */
+  margin-bottom: 0px;     /* Remove margem inferior */
+  background: var(--footerHeader); /* Cor de fundo preta */
+  overflow: hidden;       /* Esconde conteúdo que ultrapassa limites */
+}
+
+/* Decoração do footer - Linha superior com gradiente repetitivo */
+footer::before {
+  content: "";            /* Conteúdo vazio */
+  position: absolute;     /* Posicionamento absoluto */
+  width: 100%;           /* Cobre toda a largura do footer */
+  height: 7.3px;         /* Altura da linha decorativa */
+  bottom: 68px;          /* Posicionamento vertical (80px - 7.3px - padding) */
+  left: 0;                /* Posicionamento à esquerda */
+
+  /* Mesmo padrão de decoração do header */
+  background: repeating-linear-gradient(
+    to right,             /* Direção do gradiente */
+    white,                /* Cor dos retângulos */
+    white 15.2px,        /* Largura de cada retângulo */
+    transparent 15.2px,  /* Espaço transparente após cada retângulo */
+    transparent 30.4px   /* Distância até o próximo retângulo */
+  );
+}

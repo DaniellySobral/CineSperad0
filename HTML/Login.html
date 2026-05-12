@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/CSS/Utilitario.css">
+  <link rel="stylesheet" href="/CSS/Login.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- Cabeçalho -->>
+  <div class="divheader">
+  <header>
+    <img src="/Icones-Imagens/LogoCinesperado.png" alt="">
+    <ul class="menu">
+      <li><a href="/HTML/Home.html">Início</a></li>
+      <li><a href="/HTML/SorteioSlogin.html">Sortear</a></li>
+      <li><a href="/HTML/AssistirMaisTarde.html">Listas</a></li>
+      <li><a href="/HTML/SobreNos.html">Sobre nós</a></li>
+      <li><a href="/HTML/Configuracoes.html">Configurações</a></li>
+    </ul>
+    <div class="buttonDiv">
+      <div class="buttonHeader button">
+         <h1><a href="/HTML/Login.html">ENTRAR</a></h1>
+      </div>
+      <div class="buttonHeader button">
+        <h1><a href="/HTML/Login.html">CRIAR CONTA</a></h1>
+      </div>
+    </div>
+  </header>
+  </div>
+<main>
+<!--CONTEÚDO PRINCIPAL-->
+  <div class="container">
+
+    <!-- ===== FORMULÁRIO DE LOGIN ===== -->
+    <div class="form-box login">
+      <form action="">
+        <h1>Login</h1>
+
+        <!-- Campo para o nome de usuário -->
+        <div class="input-box">
+          <input type="text" placeholder="Usuário" required>
+          <i class='bx bxs-user'></i> <!-- Ícone de usuário -->
+        </div>
+
+        <!-- Campo para senha -->
+        <div class="input-box">
+          <input type="password" placeholder="Senha" required>
+          <i class='bx bxs-lock-alt'></i> <!-- Ícone de cadeado -->
+        </div>
+
+        <!-- Link para recuperação de senha -->
+        <div class="forgot-link">
+          <a href="/HTML/RecuperarSenha.html">Esqueceu a senha?</a>
+        </div>
+
+        <!-- Botão de login -->
+        <button type="submit" class="btn">Entrar</button>
+
+        <!-- Login alternativo com Google -->
+        <p>ou entre com sua conta Google</p>
+        <div class="google-icon">
+          <a href="#"><i class='bx bxl-google'></i></a>
+        </div>
+      </form>
+    </div>
+
+    <!-- ===== FORMULÁRIO DE CADASTRO ===== -->
+    <div class="form-box register">
+      <form action="">
+        <h1>Cadastre-se</h1>
+
+        <!-- Campo para nome de usuário -->
+        <div class="input-box">
+          <input type="text" placeholder="Usuário" required>
+          <i class='bx bxs-user'></i>
+        </div>
+
+        <!-- Campo para e-mail -->
+        <div class="input-box">
+          <input type="email" placeholder="E-mail" required>
+          <i class='bx bxs-envelope'></i>
+        </div>
+
+        <!-- Campo para senha -->
+        <div class="input-box">
+          <input type="password" placeholder="Senha" required>
+          <i class='bx bxs-lock-alt'></i>
+        </div>
+
+        <!-- Botão de criação de conta -->
+        <button type="submit" class="btn">Criar conta</button>
+
+        <!-- Cadastro alternativo com Google -->
+        <p>ou cadastre-se com sua conta Google</p>
+        <div class="google-icon">
+          <a href="#"><i class='bx bxl-google'></i></a>
+        </div>
+      </form>
+    </div>
+
+    <!-- ===== PAINEL DE TROCA ENTRE LOGIN E CADASTRO ===== -->
+    <div class="toggle-box">
+      <!-- Painel mostrado quando o usuário está na tela de login -->
+      <div class="toggle-panel toggle-left">
+        <h1>Bem-vindo(a) de volta!</h1>
+        <p>Não possui uma conta?</p>
+        <button class="btn register-btn">Cadastre-se</button>
+      </div>
+
+      <!-- Painel mostrado quando o usuário está na tela de cadastro -->
+      <div class="toggle-panel toggle-right">
+        <h1>Olá, seja bem-vindo(a)!</h1>
+        <p>Já possui uma conta?</p>
+        <button class="btn login-btn">Entrar</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Rodapé -->
+  <div class="divfooter">
+  <footer>
+    <p>Créditos: Trabalho de Engenharia de Software - Curso de Análise e Desenvolvimento de Sistemas</p>
+  </footer>
+  </div>
+  <script src="/JAVASCRIPT/theme.js"></script>
+  <!-- Script responsável pela animação/troca de login e cadastro -->
+  <script src="/JAVASCRIPT/login.js"></script>
+</body>
+
+</html>

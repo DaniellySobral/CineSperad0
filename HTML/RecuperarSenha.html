@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperação de senha</title>
+  <link rel="stylesheet" href="/CSS/Utilitario.css">
+  <link rel="stylesheet" href="/CSS/Configuracoes.css">
+  <link rel="stylesheet" href="/CSS/RecuperarSenha.css">
+</head>
+
+<body>
+  <!-- Cabeçalho -->
+  <div class="divheader">
+    <header>
+      <img src="/Icones-Imagens/LogoCinesperado.png" alt="">
+      <ul class="menu">
+        <li><a href="/HTML/Home.html">Início</a></li>
+        <li><a href="/HTML/SorteioSlogin.html">Sortear</a></li>
+        <li><a href="/HTML/AssistirMaisTarde.html">Listas</a></li>
+        <li><a href="/HTML/SobreNos.html">Sobre nós</a></li>
+        <li><a href="/HTML/Configuracoes.html">Configurações</a></li>
+      </ul>
+      <div class="buttonDiv">
+        <div class="buttonHeader button">
+          <h1><a href="/HTML/Login.html">ENTRAR</a></h1>
+        </div>
+        <div class="buttonHeader button">
+          <h1><a href="/HTML/Login.html">CRIAR CONTA</a></h1>
+        </div>
+      </div>
+    </header>
+  </div>
+  <main>
+    <!-- Conteúdo principal -->
+    
+    <div class="config-container ativo">
+      <div class="config-card">
+         <h1 class="recuperartitle">Redefinição de senha!</h1>
+        <!-- CAMPO E-MAIL -->
+        <div class="field-group">
+          <label for="email">Por favor, informe o e-mail cadastrado </label>
+          <div class="input-wrapper">
+            <input type="email" id="email" class="custom-input" value="fulano@email.com" readonly>
+            <button class="edit-button">Editar</button>
+          </div>
+          <!-- Elemento para a mensagem de erro de e-mail -->
+          <span class="error-message" id="email-error"></span>
+        </div>
+
+
+        <!-- Botão salvar -->
+        <button class="save-button send-password">Enviar</button>
+      </div>
+    </div>
+        <div class="config-container">
+      <div class="config-card">
+         <h1 class="recuperartitle">Tudo pronto!</h1>
+        <p class="recuperar-p">Um link para alterar a senha foi enviado para o seu e-mail!
+Volte a tela de login e, após a alteração, tente entrar novamente!</p>
+        <!-- Botão salvar -->
+        <button class="save-button comeback"><a href="/HTML/Login.html">Voltar ao login</a></button>
+        </div>
+
+      </div>
+    </div>
+    </div>
+  </main>
+
+
+  <!-- Rodapé -->
+  <div class="divfooter">
+    <footer>
+      <p>Créditos: Trabalho de Engenharia de Software - Curso de Análise e Desenvolvimento de Sistemas</p>
+    </footer>
+  </div>
+  <script src="/JAVASCRIPT/theme.js"></script>
+  <script src="/JAVASCRIPT/Configuracoes.js"></script>
+  <script src="/JAVASCRIPT/RecuperarSenha.js"></script>
+</body>
+
+</html>

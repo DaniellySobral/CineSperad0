@@ -1,0 +1,115 @@
+/* Estilos para a divconteudo e suas divs internas */
+.divconteudo {
+  display: flex;
+  flex-direction: column; /* Organiza os elementos em coluna (um abaixo do outro) */
+  width: 100%; /* Ocupa toda a largura disponível */
+  box-sizing: border-box; /* Inclui padding e border no cálculo da largura total */
+}
+
+/* Container para as divs superiores (esquerda e direita) */
+.div-linha-superior {
+  display: flex; /* Organiza as divs lado a lado */
+  width: 100%; /* Ocupa toda a largura do container pai */
+  flex-wrap: wrap; /* Permite que as divs quebrem linha em telas pequenas */
+}
+
+/* Div esquerda - contém o título e descrição */
+.div-esquerda {
+  width: 450px; /* Largura fixa da div esquerda */
+  height: 295px; /* Altura fixa */
+  background: linear-gradient(to bottom, var(--backgroundDark), var(--footerHeader)); /* Fundo com gradiente das cores escuras */
+  display: flex;
+  flex-direction: column; /* Organiza o conteúdo internamente em coluna */
+  justify-content: center; /* Centraliza verticalmente o conteúdo */
+  align-items: center; /* Centraliza horizontalmente o conteúdo */
+  text-align: center; /* Alinha o texto ao centro */
+  padding: 20px; /* Espaçamento interno */
+  box-sizing: border-box; /* Inclui padding no cálculo da largura/altura total */
+}
+
+/* Estilo para o título "Minha Lista" */
+.titulo-lista {
+  font-family: 'Open Sans', sans-serif; /* Define a fonte do texto */
+  font-style: normal;
+  font-weight: 700; /* Texto em negrito */
+  font-size: 30.7px; /* Tamanho da fonte */
+  line-height: 42px; /* Altura da linha */
+  color: var(--whiteLetter); /* Cor do texto branco */
+  margin-bottom: 15px; /* Espaçamento abaixo do título */
+}
+
+/* Estilo para a descrição abaixo do título */
+.descricao-lista {
+  font-family: 'Open Sans', sans-serif; /* Define a fonte do texto */
+  font-style: normal;
+  font-weight: 400; /* Peso normal da fonte */
+  font-size: 14.2px; /* Tamanho da fonte */
+  line-height: 19px; /* Altura da linha */
+  color: var(--whiteLetter); /* Cor do texto branco */
+  max-width: 80%; /* Limita a largura do texto a 80% do container */
+}
+
+/* Div direita - contém a imagem de fundo */
+.div-direita {
+  flex: 1; /* Faz com que a div ocupe todo o espaço restante */
+  height: 295px; /* Mesma altura da div esquerda */
+  background-image: url(/Icones-Imagens/bannerpequeno.jpeg); /* Imagem de fundo */
+  background-size: cover; /* Faz com que a imagem cubra toda a div */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  display: flex;
+  flex-direction: column; /* Organiza o conteúdo internamente em coluna */
+  justify-content: center; /* Centraliza verticalmente o conteúdo */
+  align-items: center; /* Centraliza horizontalmente o conteúdo */
+  box-sizing: border-box; /* Inclui padding no cálculo da largura/altura total */
+}
+
+/* Container para os botões de lista */
+.btn-listas {
+  display: flex; /* Organiza os botões lado a lado */
+  width: 100%; /* Ocupa toda a largura do container pai */
+}
+
+/* Estilos para cada botão individual */
+.btn-listas > div {
+  flex: 1; /* Distribui igualmente o espaço disponível entre os botões */
+  height: 93px; /* Altura fixa dos botões */
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente o texto do botão */
+  align-items: center; /* Centraliza verticalmente o texto do botão */
+  background-color: var(--graButton); /* Cor de fundo cinza dos botões */
+  transition: all 0.3s ease; /* Animação suave nas propriedades */
+  cursor: pointer; /* Muda o cursor para mãozinha ao passar sobre o botão */
+}
+
+/* Estilo para o botão ativo/selecionado */
+.btn-listas > .btn-ativo {
+  background-color: var(--redLight); /* Cor de fundo vermelha para o botão ativo */
+}
+
+/* Estilo adicional para o link dentro do botão ativo */
+.btn-listas > .btn-ativo a {
+  font-weight: 700; /* Deixa o texto do botão ativo em negrito */
+}
+
+/* Efeito ao passar o mouse sobre qualquer botão */
+.btn-listas > div:hover {
+  background-color: var(--redLight); /* Cor de fundo vermelha ao passar o mouse */
+  transform: translateY(-2px); /* Efeito sutil de elevação do botão */
+}
+
+/* Estilo para os links dentro dos botões */
+.btn-listas a {
+  color: var(--whiteLetter); /* Cor do texto branco */
+  text-decoration: none; /* Remove o sublinhado do link */
+  font-family: 'Open Sans', sans-serif; /* Define a fonte do texto */
+  font-weight: 600; /* Peso semi-negrito da fonte */
+  font-size: 16px; /* Tamanho da fonte */
+  text-align: center; /* Alinha o texto ao centro */
+  padding: 0 10px; /* Espaçamento horizontal interno */
+}
+
+/* Container principal que envolve todo o conteúdo */
+.container-listas {
+  height: 1000px; /* Altura fixa do container - pode ser ajustada conforme necessidade */
+}
