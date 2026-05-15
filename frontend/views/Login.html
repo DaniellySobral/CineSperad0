@@ -8,131 +8,151 @@
   <link rel="stylesheet" href="/frontend/styles/utilitario.css">
   <link rel="stylesheet" href="/frontend/styles/login.css">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <!-- Adicionado script oficial do Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 </head>
 
 <body>
   <!-- Cabeçalho -->>
   <div class="divheader">
-  <header>
-    <img src="/frontend/assets/images/LogoCinesperado.png" alt="">
-    <ul class="menu">
-      <li><a href="/frontend/views/Home.html">Início</a></li>
-      <li><a href="/frontend/views/SorteioSlogin.html">Sortear</a></li>
-      <li><a href="/frontend/views/AssistirMaisTarde.html">Listas</a></li>
-      <li><a href="/frontend/views/SobreNos.html">Sobre nós</a></li>
-      <li><a href="/frontend/views/Configuracoes.html">Configurações</a></li>
-    </ul>
-    <div class="buttonDiv">
-      <div class="buttonHeader button">
-         <h1><a href="/frontend/views/Login.html">ENTRAR</a></h1>
+    <header>
+      <img src="/frontend/assets/images/LogoCinesperado.png" alt="">
+      <ul class="menu">
+        <li><a href="/frontend/views/Home.html">Início</a></li>
+        <li><a href="/frontend/views/SorteioSlogin.html">Sortear</a></li>
+        <li><a href="/frontend/views/AssistirMaisTarde.html">Listas</a></li>
+        <li><a href="/frontend/views/SobreNos.html">Sobre nós</a></li>
+        <li><a href="/frontend/views/Configuracoes.html">Configurações</a></li>
+      </ul>
+      <div class="buttonDiv">
+        <div class="buttonHeader button">
+          <h1><a href="/frontend/views/Login.html">ENTRAR</a></h1>
+        </div>
+        <div class="buttonHeader button">
+          <h1><a href="/frontend/views/Login.html">CRIAR CONTA</a></h1>
+        </div>
       </div>
-      <div class="buttonHeader button">
-        <h1><a href="/frontend/views/Login.html">CRIAR CONTA</a></h1>
-      </div>
-    </div>
-  </header>
+    </header>
   </div>
-<main>
-<!--CONTEÚDO PRINCIPAL-->
-  <div class="container">
+  <main>
+    <!--CONTEÚDO PRINCIPAL-->
+    <div class="container">
 
-    <!-- ===== FORMULÁRIO DE LOGIN ===== -->
-    <div class="form-box login">
-      <form action="">
-        <h1>Login</h1>
+      <!-- ===== FORMULÁRIO DE LOGIN ===== -->
+      <div class="form-box login">
+        <form id="loginForm">
+          <h1>Login</h1>
 
-        <!-- Campo para o nome de usuário -->
-        <div class="input-box">
-          <input type="text" placeholder="Usuário" required>
-          <i class='bx bxs-user'></i> <!-- Ícone de usuário -->
-        </div>
+          <!-- Campo para o nome de usuário -->
+          <div class="input-box">
+            <input type="text" id="loginUsername" placeholder="Usuário" required>
+            <i class='bx bxs-user'></i> <!-- Ícone de usuário -->
+          </div>
 
-        <!-- Campo para senha -->
-        <div class="input-box">
-          <input type="password" placeholder="Senha" required>
-          <i class='bx bxs-lock-alt'></i> <!-- Ícone de cadeado -->
-        </div>
+          <!-- Campo para senha -->
+          <div class="input-box">
+            <input type="password" id="loginPassword" placeholder="Senha" required>
+            <i class='bx bxs-lock-alt'></i> <!-- Ícone de cadeado -->
+          </div>
 
-        <!-- Link para recuperação de senha -->
-        <div class="forgot-link">
-          <a href="/frontend/views/RecuperarSenha.html">Esqueceu a senha?</a>
-        </div>
+          <!-- Link para recuperação de senha -->
+          <div class="forgot-link">
+            <a href="/frontend/views/RecuperarSenha.html">Esqueceu a senha?</a>
+          </div>
 
-        <!-- Botão de login -->
-        <button type="submit" class="btn">Entrar</button>
+          <!-- Botão de login -->
+          <button type="submit" class="btn">Entrar</button>
 
-        <!-- Login alternativo com Google -->
-        <p>ou entre com sua conta Google</p>
-        <div class="google-icon">
-          <a href="#"><i class='bx bxl-google'></i></a>
-        </div>
-      </form>
-    </div>
+          <p id="loginError"
+            style="color: red; display: none; font-size: 0.9em; margin-top: 10px; text-align: center; font-weight: bold;">
+          </p>
 
-    <!-- ===== FORMULÁRIO DE CADASTRO ===== -->
-    <div class="form-box register">
-      <form action="">
-        <h1>Cadastre-se</h1>
-
-        <!-- Campo para nome de usuário -->
-        <div class="input-box">
-          <input type="text" placeholder="Usuário" required>
-          <i class='bx bxs-user'></i>
-        </div>
-
-        <!-- Campo para e-mail -->
-        <div class="input-box">
-          <input type="email" placeholder="E-mail" required>
-          <i class='bx bxs-envelope'></i>
-        </div>
-
-        <!-- Campo para senha -->
-        <div class="input-box">
-          <input type="password" placeholder="Senha" required>
-          <i class='bx bxs-lock-alt'></i>
-        </div>
-
-        <!-- Botão de criação de conta -->
-        <button type="submit" class="btn">Criar conta</button>
-
-        <!-- Cadastro alternativo com Google -->
-        <p>ou cadastre-se com sua conta Google</p>
-        <div class="google-icon">
-          <a href="#"><i class='bx bxl-google'></i></a>
-        </div>
-      </form>
-    </div>
-
-    <!-- ===== PAINEL DE TROCA ENTRE LOGIN E CADASTRO ===== -->
-    <div class="toggle-box">
-      <!-- Painel mostrado quando o usuário está na tela de login -->
-      <div class="toggle-panel toggle-left">
-        <h1>Bem-vindo(a) de volta!</h1>
-        <p>Não possui uma conta?</p>
-        <button class="btn register-btn">Cadastre-se</button>
+          <!-- Login alternativo com Google -->
+          <p>ou entre com sua conta Google</p>
+          <div style="display: flex; justify-content: center; margin-top: 10px;">
+            <!-- Configuração do Google Identity Services -->
+            <div id="g_id_onload"
+              data-client_id="349123477958-vapfo4a4ghsfn9e6qnsknd76a9tfcloc.apps.googleusercontent.com"
+              data-context="signin" data-ux_mode="popup" data-callback="handleGoogleCredentialResponse"
+              data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline"
+              data-text="signin_with" data-size="large" data-logo_alignment="left">
+            </div>
+          </div>
+        </form>
       </div>
 
-      <!-- Painel mostrado quando o usuário está na tela de cadastro -->
-      <div class="toggle-panel toggle-right">
-        <h1>Olá, seja bem-vindo(a)!</h1>
-        <p>Já possui uma conta?</p>
-        <button class="btn login-btn">Entrar</button>
+      <!-- ===== FORMULÁRIO DE CADASTRO ===== -->
+      <div class="form-box register">
+        <form id="registerForm">
+          <h1>Cadastre-se</h1>
+
+          <!-- Campo para nome de usuário -->
+          <div class="input-box">
+            <input type="text" id="registerUsername" placeholder="Usuário" required>
+            <i class='bx bxs-user'></i>
+          </div>
+
+          <!-- Campo para e-mail -->
+          <div class="input-box">
+            <input type="email" id="registerEmail" placeholder="E-mail" required>
+            <i class='bx bxs-envelope'></i>
+          </div>
+
+          <!-- Campo para senha -->
+          <div class="input-box">
+            <input type="password" id="registerPassword" placeholder="Senha" required>
+            <i class='bx bxs-lock-alt'></i>
+          </div>
+
+          <!-- Botão de criação de conta -->
+          <button type="submit" class="btn">Criar conta</button>
+
+          <!-- Exibição de Erro e Sucesso -->
+          <p id="registerError"
+            style="color: red; display: none; font-size: 0.9em; margin-top: 10px; text-align: center; font-weight: bold;">
+          </p>
+          <p id="registerSuccess"
+            style="color: green; display: none; font-size: 0.9em; margin-top: 10px; text-align: center; font-weight: bold;">
+            Conta criada! Você já pode entrar.</p>
+
+          <!-- Login alternativo com Google (Instrução) -->
+          <p>Volte à aba "Entrar" para logar com o Google</p>
+        </form>
+      </div>
+
+      <!-- ===== PAINEL DE TROCA ENTRE LOGIN E CADASTRO ===== -->
+      <div class="toggle-box">
+        <!-- Painel mostrado quando o usuário está na tela de login -->
+        <div class="toggle-panel toggle-left">
+          <h1>Bem-vindo(a) de volta!</h1>
+          <p>Não possui uma conta?</p>
+          <button class="btn register-btn">Cadastre-se</button>
+        </div>
+
+        <!-- Painel mostrado quando o usuário está na tela de cadastro -->
+        <div class="toggle-panel toggle-right">
+          <h1>Olá, seja bem-vindo(a)!</h1>
+          <p>Já possui uma conta?</p>
+          <button class="btn login-btn">Entrar</button>
+        </div>
       </div>
     </div>
-  </div>
 
-</main>
+  </main>
 
-<!-- Rodapé -->
+  <!-- Rodapé -->
   <div class="divfooter">
-  <footer>
-    <p>Créditos: Trabalho de Engenharia de Software - Curso de Análise e Desenvolvimento de Sistemas</p>
-  </footer>
+    <footer>
+      <p>Trabalho desenvolvido para o curso de Análise e Desenvolvimento de Sistemas da Fatec Americana Ministro Ralph Biasi.</p>
+    </footer>
   </div>
   <script src="/frontend/shared/theme.js"></script>
   <!-- Script responsável pela animação/troca de login e cadastro -->
   <script src="/frontend/controllers/LoginController.js"></script>
+  <script src="/frontend/shared/header.js"></script>
 </body>
 
 </html>

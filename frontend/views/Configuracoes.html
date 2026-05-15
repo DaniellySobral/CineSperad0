@@ -7,6 +7,9 @@
   <title>Configurações</title>
   <link rel="stylesheet" href="/frontend/styles/utilitario.css">
   <link rel="stylesheet" href="/frontend/styles/configuracoes.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <!-- Cropper.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
 </head>
 
 <body>
@@ -44,7 +47,10 @@
         <!-- SEÇÃO DO PERFIL -->
         <div class="profile-section">
           <img id="mainProfileImage" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Foto de perfil" class="profile-pic-main">
-          <label for="fileInput" class="upload-text">Carregar nova foto</label>
+          <div class="profile-actions">
+            <label for="fileInput" class="upload-text">Carregar nova foto</label>
+            <span id="removePhoto" class="remove-text">Remover foto</span>
+          </div>
           <input type="file" id="fileInput" accept="image/*" hidden>
         </div>
 
@@ -92,11 +98,32 @@
   <!-- Rodapé -->
   <div class="divfooter">
     <footer>
-      <p>Créditos: Trabalho de Engenharia de Software - Curso de Análise e Desenvolvimento de Sistemas</p>
+      <p>Trabalho desenvolvido para o curso de Análise e Desenvolvimento de Sistemas da Fatec Americana Ministro Ralph Biasi.</p>
     </footer>
   </div>
+  </div>
+  
+  <!-- Modal de Recorte (Cropper) -->
+  <div id="cropperModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Ajustar sua foto</h3>
+        <button id="closeModal" class="close-modal">&times;</button>
+      </div>
+      <div class="img-container">
+        <img id="imageToCrop" src="">
+      </div>
+      <div class="modal-footer">
+        <button id="cancelCrop" class="modal-btn cancel">Cancelar</button>
+        <button id="confirmCrop" class="modal-btn confirm">Confirmar Corte</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
   <script src="/frontend/shared/theme.js"></script>
   <script src="/frontend/controllers/ConfiguracoesController.js"></script>
+  <script src="/frontend/shared/header.js"></script>
 </body>
 
 </html>

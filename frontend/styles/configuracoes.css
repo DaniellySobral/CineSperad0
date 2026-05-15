@@ -94,8 +94,7 @@ body.dark-theme .config-container {
 
 /* Link para carregar uma nova foto de perfil */
 .upload-text {
-  margin-top: 8px;
-  color: #5b0013;
+  color: var(--button);
   font-size: 14px;
   cursor: pointer;
 }
@@ -285,3 +284,134 @@ body.dark-theme .config-container {
 .save-button:hover {
   background-color: #7a0020;
 }
+
+/* ===================================
+   NOVAS FUNCIONALIDADES (CROPPER & REMOVE)
+   =================================== */
+
+.profile-actions {
+  display: flex;
+  gap: 20px;
+  margin-top: 8px;
+  align-items: center; /* Garante que os textos estejam alinhados verticalmente */
+}
+
+.remove-text {
+  color: var(--button); /* Usa o tom de vinho da paleta do site */
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.remove-text:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* Modal do Cropper */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 0;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #888;
+}
+
+.img-container {
+  width: 100%;
+  max-height: 400px;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#imageToCrop {
+  max-width: 100%;
+}
+
+.modal-footer {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid #eee;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s;
+}
+
+.modal-btn.cancel {
+  background-color: #eee;
+  color: #666;
+}
+
+.modal-btn.confirm {
+  background-color: #5b0013;
+  color: white;
+}
+
+.modal-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+/* Dark mode adjustments for modal */
+body.dark-theme .modal-content {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+body.dark-theme .modal-header { border-color: #333; }
+body.dark-theme .modal-footer { border-color: #333; }
+body.dark-theme .modal-header h3 { color: #fff; }
+body.dark-theme .modal-btn.cancel { background-color: #333; color: #ccc; }

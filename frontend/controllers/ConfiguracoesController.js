@@ -17,6 +17,60 @@
 
 
 // ============================================================
+// 0. CARREGAMENTO DOS DADOS DO USUÁRIO DA API
+// ============================================================
+const token = localStorage.getItem('cinesperado_token');
+let isGoogleUser = false; // Flag para bloquear alteração de e-mail
+
+document.addEventListener('DOMContentLoaded', async () => {
+    if (!token) {
+        window.location.href = '/frontend/views/Login.html';
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:8000/auth/me', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            const userData = await response.json();
+            
+            // Preenche o formulário com os dados reais
+            document.getElementById('nome').value = userData.username || '';
+            document.getElementById('email').value = userData.email || '';
+            
+            // Foto de perfil
+            if (userData.picture_url) {
+                document.getElementById('mainProfileImage').src = userData.picture_url;
+            }
+
+            // Tratamento especial para usuários do Google
+            if (userData.is_google_user) {
+                isGoogleUser = true;
+                const emailInput = document.getElementById('email');
+                const editEmailBtn = emailInput.nextElementSibling;
+                
+                editEmailBtn.style.display = 'none'; // Esconde botão de editar
+                emailInput.title = 'Usuários do Google não podem alterar o e-mail.';
+                emailInput.style.backgroundColor = '#e0e0e0'; // Indica bloqueio
+            }
+        } else {
+            // Token inválido ou expirado
+            localStorage.removeItem('cinesperado_token');
+            localStorage.removeItem('cinesperado_username');
+            localStorage.removeItem('cinesperado_picture');
+            window.location.href = '/frontend/views/Login.html';
+        }
+    } catch (error) {
+        console.error("Erro ao buscar dados do perfil:", error);
+    }
+});
+
+// ============================================================
 // 1. SELEÇÃO DE TEMA
 // ============================================================
 
@@ -68,21 +122,85 @@ mainProfileImage.addEventListener('click', () => {
   fileInput.click();
 });
 
-// Quando o usuário seleciona uma nova foto:
+// ─── Lógica de Recorte de Imagem (Cropper.js) ────────────────────────────────
+let cropper = null;
+const cropperModal = document.getElementById('cropperModal');
+const imageToCrop = document.getElementById('imageToCrop');
+
+/**
+ * Escuta mudanças no input de arquivo. Quando o usuário escolhe uma imagem,
+ * abre o modal de recorte e inicializa o Cropper.js.
+ */
 fileInput.addEventListener('change', (event) => {
-  const file = event.target.files[0]; // Pega o primeiro arquivo selecionado
-
+  const file = event.target.files[0];
   if (file) {
-    // Usa a API FileReader para ler o arquivo como URL em base64
     const reader = new FileReader();
-
-    // Quando a leitura terminar, atualiza o src da imagem de perfil
     reader.onload = (e) => {
-      mainProfileImage.src = e.target.result;
+      imageToCrop.src = e.target.result;
+      cropperModal.style.display = 'flex';
+      
+      if (cropper) cropper.destroy();
+      
+      cropper = new Cropper(imageToCrop, {
+        aspectRatio: 1, // Quadrado
+        viewMode: 1,
+        guides: true,
+        center: true,
+        highlight: false,
+        cropBoxMovable: true,
+        cropBoxResizable: true,
+        toggleDragModeOnDblclick: false,
+      });
     };
-
-    reader.readAsDataURL(file); // Inicia a leitura do arquivo
+    reader.readAsDataURL(file);
   }
+});
+
+// ─── Botões do Modal de Recorte ─────────────────────────────────────────────
+
+// Fecha o modal e limpa o cropper ao cancelar
+document.getElementById('cancelCrop').addEventListener('click', () => {
+    cropperModal.style.display = 'none';
+    if (cropper) cropper.destroy();
+    fileInput.value = ''; // Limpa o input
+});
+
+document.getElementById('closeModal').addEventListener('click', () => {
+    cropperModal.style.display = 'none';
+    if (cropper) cropper.destroy();
+    fileInput.value = '';
+});
+
+document.getElementById('confirmCrop').addEventListener('click', () => {
+    if (!cropper) return;
+    
+    // Obtém o canvas do recorte com qualidade alta
+    const canvas = cropper.getCroppedCanvas({
+        width: 400,
+        height: 400
+    });
+    
+    // Atualiza a imagem de perfil com o recorte em base64
+    mainProfileImage.src = canvas.toDataURL('image/jpeg', 0.9);
+    
+    cropperModal.style.display = 'none';
+    cropper.destroy();
+    cropper = null;
+});
+
+// ─── Remover Foto de Perfil ──────────────────────────────────────────────────
+const removePhotoBtn = document.getElementById('removePhoto');
+const DEFAULT_PIC = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+/**
+ * Reseta a imagem de perfil para o avatar padrão.
+ * Adiciona um atributo 'removed' para sinalizar ao backend que a foto antiga deve ser apagada.
+ */
+removePhotoBtn.addEventListener('click', () => {
+    if (confirm("Deseja realmente remover sua foto de perfil?")) {
+        mainProfileImage.src = DEFAULT_PIC;
+        mainProfileImage.dataset.removed = "true";
+    }
 });
 
 
@@ -124,10 +242,10 @@ editButtons.forEach(button => {
 
 
 // ============================================================
-// 5. SALVAR ALTERAÇÕES COM VALIDAÇÃO
+// 5. SALVAR ALTERAÇÕES COM VALIDAÇÃO E ENVIO PARA A API
 // ============================================================
 
-saveButton.addEventListener('click', () => {
+saveButton.addEventListener('click', async () => {
 
   // ── Validação do campo E-mail ──────────────────────────────────────────────
 
@@ -148,9 +266,72 @@ saveButton.addEventListener('click', () => {
     // Interrompe o salvamento — o usuário deve corrigir o e-mail antes
     return;
   } else {
-    // E-mail válido: limpa qualquer indicação de erro anterior
     emailInput.classList.remove('error');
     emailError.style.display = 'none';
+  }
+
+  // ── Preparação do Payload para a API ────────────────────────────────────────
+
+  // Pegamos a foto caso tenha sido alterada ou removida
+  let picture_url = undefined; // undefined não será enviado se não houver mudança
+  const currentImageSrc = document.getElementById('mainProfileImage').src;
+  
+  if (document.getElementById('mainProfileImage').dataset.removed === "true") {
+      picture_url = null; // Backend interpreta null como "remover"
+  } else if (currentImageSrc.startsWith('data:image')) {
+      picture_url = currentImageSrc; // É um base64 local (novo recorte)
+  }
+
+  const payload = {
+      username: document.getElementById('nome').value,
+  };
+  
+  if (!isGoogleUser) {
+      payload.email = emailInput.value;
+  }
+  
+  // Só adiciona picture_url ao payload se ele foi alterado ou removido
+  if (picture_url !== undefined) {
+      payload.picture_url = picture_url;
+  }
+
+  try {
+      saveButton.disabled = true;
+      saveButton.textContent = 'Salvando...';
+
+      const response = await fetch('http://localhost:8000/auth/me', {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+          // Atualiza dados locais
+          localStorage.setItem('cinesperado_username', result.username);
+          if (result.picture_url) {
+              localStorage.setItem('cinesperado_picture', result.picture_url);
+          } else {
+              localStorage.removeItem('cinesperado_picture');
+          }
+          
+          // Limpa flag de remoção
+          delete document.getElementById('mainProfileImage').dataset.removed;
+      } else {
+          // Exibe erro vindo do backend (Ex: Nome já existe, E-mail já existe)
+          alert(result.detail || 'Erro ao salvar as configurações.');
+          return; // Não executa o restante do código (bloqueio de inputs) se falhou
+      }
+  } catch (error) {
+      console.error(error);
+      alert('Erro de conexão ao salvar.');
+  } finally {
+      saveButton.disabled = false;
+      saveButton.textContent = 'Salvar mudanças';
   }
 
   // ── Bloqueio dos campos após salvar ───────────────────────────────────────

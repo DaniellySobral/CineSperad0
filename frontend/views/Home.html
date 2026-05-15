@@ -7,6 +7,7 @@
   <title>Home</title>
   <link rel="stylesheet" href="/frontend/styles/utilitario.css">
   <link rel="stylesheet" href="/frontend/styles/home.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -17,9 +18,9 @@
     <ul class="menu">
       <li><a href="/frontend/views/Home.html">Início</a></li>
       <li><a href="/frontend/views/SorteioSlogin.html">Sortear</a></li>
-      <li><a href="/frontend/views/AssistirMaisTarde.html">Listas</a></li>
+      <li><a href="/frontend/views/AssistirMaisTarde.html" class="requires-auth">Listas</a></li>
       <li><a href="/frontend/views/SobreNos.html">Sobre nós</a></li>
-      <li><a href="/frontend/views/Configuracoes.html">Configurações</a></li>
+      <li><a href="/frontend/views/Configuracoes.html" class="requires-auth">Configurações</a></li>
     </ul>
     <div class="buttonDiv">
       <div class="buttonHeader button">
@@ -75,9 +76,20 @@
         <p>
           - Acesse suas listas e edite o status dos filmes que foram salvos.
         </p>
-        <a href="/frontend/views/listas.html">
-          <img src="/frontend/assets/images/iconestutorial.png" alt="tutorialsalvar">
-        </a> 
+        <div class="tutorial-list-links">
+          <a href="/frontend/views/AssistirMaisTarde.html" class="requires-auth" title="Assistir Mais Tarde">
+            <i class='bx bxs-bookmark'></i>
+            <span class="tutorial-btn-label">Ver lista</span>
+          </a>
+          <a href="/frontend/views/JaAssistidos.html" class="requires-auth" title="Já Assistidos">
+            <i class='bx bx-check'></i>
+            <span class="tutorial-btn-label">Ver lista</span>
+          </a>
+          <a href="/frontend/views/SemInteresse.html" class="requires-auth" title="Sem Interesse">
+            <i class='bx bx-x'></i>
+            <span class="tutorial-btn-label">Ver lista</span>
+          </a>
+        </div> 
       </div>
     </div>
   </section>
@@ -97,7 +109,7 @@
 
       <!-- Card 2 -->
       <div class="card">
-        <a href="/frontend/views/AssistirMaisTarde.html" class="card-link">
+        <a href="/frontend/views/AssistirMaisTarde.html" class="card-link requires-auth">
           <img src="/frontend/assets/images/Listas500.jpg" alt="Acessar Listas">
           <h3>Acessar suas Listas</h3>
         </a>
@@ -119,12 +131,26 @@
 <!-- Rodapé -->
   <div class="divfooter">
   <footer>
-        <p>Créditos: Trabalho de Engenharia de Software - Curso de Análise e Desenvolvimento de Sistemas</p>
+        <p>Trabalho desenvolvido para o curso de Análise e Desenvolvimento de Sistemas da Fatec Americana Ministro Ralph Biasi.</p>
 
   </footer>
   </div>
+  <!-- Modal de Autenticação -->
+  <div class="auth-modal-overlay" id="authModal">
+    <div class="auth-modal">
+      <h2>Acesso Restrito</h2>
+      <p>Você precisa estar logado para acessar esta funcionalidade.</p>
+      <div class="auth-modal-buttons">
+        <button class="button btn-close" id="closeAuthModal">Cancelar</button>
+        <a href="/frontend/views/Login.html" class="button btn-login">Fazer Login</a>
+      </div>
+    </div>
+  </div>
+
   <script src="/frontend/shared/theme.js"></script>
   <script src="/frontend/shared/script.js"></script>
+  <script src="/frontend/shared/auth.js"></script>
+  <script src="/frontend/shared/header.js"></script>
 </body>
 
 </html>

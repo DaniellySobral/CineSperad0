@@ -7,6 +7,7 @@
   <title>Sobre nós</title>
   <link rel="stylesheet" href="/frontend/styles/utilitario.css">
   <link rel="stylesheet" href="/frontend/styles/sobreNos.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -32,35 +33,40 @@
   </div>
 <main>
   <div class="main-container">
-    <!-- Lado esquerdo - Pôsteres -->
-    <div class="poster-wall">
-        <div class="poster">
-            <img src="/Icones-Imagens/sobrenos/SobreNos.jpg" alt="PosterEsquerdo">
+    <div class="close-btn" onclick="window.history.back()">&times;</div>
+    <div class="top-section">
+        <!-- Lado esquerdo - Pôsteres -->
+        <div class="poster-wall">
+            <img src="/frontend/assets/backgrounds/banerSobrenos.jpeg" alt="PosterEsquerdo">
+        </div>
+
+        <!-- Lado direito - Conteúdo -->
+        <div class="content-area">
+            <h1 class="sobre-nos-title">Sobre Nós</h1>
+            
+            <p class="description-text">
+                Somos estudantes do curso de Análise e Desenvolvimento de Sistemas apaixonados por tecnologia, cinema e boas experiências digitais.
+            </p>
+            
+            <p class="description-text">
+                Unimos criatividade e código para dar vida ao <span class="highlight">Cinesperado</span> – uma plataforma feita para transformar aquele momento de dúvida (“o que assistir agora?”) em algo simples, divertido e cheio de descobertas.
+            </p>
+            <p class="description-text">
+                Nosso objetivo é ajudar você a explorar o mundo do cinema de forma prática e interativa. Aqui, você pode gerar filmes de forma aleatória ou usar filtros como gênero, ano de lançamento, nota e até diretor para encontrar algo que combine com o seu momento.
+            </p>
         </div>
     </div>
-
-    <!-- Lado direito - Conteúdo -->
-    <div class="content-area">
-        <h1 class="sobre-nos-title">Sobre Nós</h1>
-        
-        <p class="description-text">
-            Somos um grupo de quatro estudantes apaixonados por tecnologia, cinema e boas experiências digitais. 
-        </p>
-        
-        <p class="description-text">
-            No 5º semestre do curso de Análise e Desenvolvimento de Sistemas, unimos criatividade e código para dar vida ao <span class="highlight">Cinesperado</span>– uma plataforma feita para transformar aquele momento de dúvida (“o que assistir agora?”) em algo simples, divertido e cheio de descobertas.
-        </p>
-        <p class="description-text">Nosso objetivo é ajudar você a explorar o mundo do cinema de forma prática e interativa. Aqui, você pode gerar filmes de forma aleatória ou usar filtros como gênero, ano de lançamento, nota e até diretor para encontrar algo que combine com o seu momento.</p>
-    </div>
     
-    <!-- Área vermelha posicionada abaixo da imagem esquerda -->
+    <!-- Área vermelha posicionada abaixo -->
     <div class="welcome-area">
-        <p class="welcome-text-title">
-            Seja bem-vindo(a)!
-        </p>
-        <p class="welcome-text">Prepare a pipoca e deixe o Cinesperado surpreender você.
-        </p>
-        <img src="/Icones-Imagens/sobrenos/Amelie.jpg" alt="Amelie">
+        <div class="welcome-text-container">
+            <p class="welcome-text-title">
+                Seja bem-vindo(a)!
+            </p>
+            <p class="welcome-text">Prepare a pipoca e deixe o Cinesperado surpreender você.
+            </p>
+        </div>
+        <img src="/frontend/assets/images/Amelie.jpg" alt="Amelie">
     </div>
 </div>
 </main>
@@ -68,10 +74,11 @@
 
   <div class="divfooter">
   <footer>
-    <p>Créditos: Trabalho de Engenharia de Software - Curso de Análise e Desenvolvimento de Sistemas</p>
+    <p>Trabalho desenvolvido para o curso de Análise e Desenvolvimento de Sistemas da Fatec Americana Ministro Ralph Biasi.</p>
   </footer>
   </div>
    <script src="/frontend/shared/theme.js"></script>
+  <script src="/frontend/shared/header.js"></script>
 </body>
 
 </html>

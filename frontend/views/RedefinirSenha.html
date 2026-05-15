@@ -4,10 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recuperação de senha</title>
+  <title>Redefinir Senha - CineSperado</title>
   <link rel="stylesheet" href="/frontend/styles/utilitario.css">
   <link rel="stylesheet" href="/frontend/styles/configuracoes.css">
-  <link rel="stylesheet" href="/frontend/styles/recuperarSenha.css">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 
@@ -33,40 +32,41 @@
       </div>
     </header>
   </div>
-  <main>
-    <!-- Conteúdo principal -->
-    
-    <div class="config-container ativo">
-      <div class="config-card">
-         <h1 class="recuperartitle">Redefinição de senha!</h1>
-        <!-- CAMPO E-MAIL -->
+<main>
+   <!-- Conteúdo principal -->
+  <div class="config-container ativo">
+    <div class="config-card">
+
+      <div class="form-container">
+
+        <h1 class="titulosenha">Crie sua nova senha</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;">Escolha uma senha segura para proteger sua conta.</p>
+
+        <!-- CAMPO SENHA NOVA -->
         <div class="field-group">
-          <label for="email">Por favor, informe o e-mail cadastrado </label>
+          <label for="newPassword">Digite a nova senha</label>
           <div class="input-wrapper">
-            <input type="email" id="email" class="custom-input" placeholder="seu@email.com">
+            <input type="password" id="newPassword" class="custom-input" placeholder="Nova senha">
           </div>
-          <!-- Elemento para a mensagem de erro de e-mail -->
-          <span class="error-message" id="email-error"></span>
         </div>
 
-
-        <!-- Botão salvar -->
-        <button class="save-button send-password">Enviar</button>
-      </div>
-    </div>
-        <div class="config-container">
-      <div class="config-card">
-         <h1 class="recuperartitle">Tudo pronto!</h1>
-        <p class="recuperar-p">Um link para alterar a senha foi enviado para o seu e-mail!
-Volte a tela de login e, após a alteração, tente entrar novamente!</p>
-        <!-- Botão salvar -->
-        <button class="save-button comeback"><a href="/frontend/views/Login.html">Voltar ao login</a></button>
+        <!-- CAMPO SENHA NOVA CONFIRMAÇÃO -->
+        <div class="field-group">
+          <label for="confirmPassword">Confirme a nova senha</label>
+          <div class="input-wrapper">
+            <input type="password" id="confirmPassword" class="custom-input" placeholder="Confirme a senha">
+          </div>
         </div>
 
+        <!-- Mensagem de erro -->
+        <span class="error-message" id="reset-error" style="display: none; text-align: center; width: 100%;"></span>
+
+        <!-- Botão salvar -->
+        <button class="save-button" id="resetBtn">Salvar nova senha</button>
       </div>
     </div>
-    </div>
-  </main>
+  </div>
+</main>
 
 
   <!-- Rodapé -->
@@ -76,7 +76,7 @@ Volte a tela de login e, após a alteração, tente entrar novamente!</p>
     </footer>
   </div>
   <script src="/frontend/shared/theme.js"></script>
-  <script src="/frontend/controllers/RecuperarSenhaController.js"></script>
+  <script src="/frontend/controllers/RedefinirSenhaController.js"></script>
   <script src="/frontend/shared/header.js"></script>
 </body>
 

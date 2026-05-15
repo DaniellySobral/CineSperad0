@@ -7,6 +7,7 @@
     <title>Sorteio sem login</title>
     <link rel="stylesheet" href="/frontend/styles/utilitario.css">
     <link rel="stylesheet" href="/frontend/styles/sorteio.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -16,9 +17,9 @@
             <ul class="menu">
                 <li><a href="/frontend/views/Home.html">Início</a></li>
                 <li><a href="/frontend/views/SorteioSlogin.html">Sortear</a></li>
-                <li><a href="/frontend/views/AssistirMaisTarde.html">Listas</a></li>
+                <li><a href="/frontend/views/AssistirMaisTarde.html" class="requires-auth">Listas</a></li>
                 <li><a href="/frontend/views/SobreNos.html">Sobre nós</a></li>
-                <li><a href="/frontend/views/Configuracoes.html">Configurações</a></li>
+                <li><a href="/frontend/views/Configuracoes.html" class="requires-auth">Configurações</a></li>
             </ul>
             <div class="buttonDiv">
                 <div class="buttonHeader button">
@@ -93,19 +94,36 @@
             </div>
 
             <div class="movie-filter-column">
-                <div class="movie-filter-group">
-                    <label class="movie-filter-label" for="movie-filter-year">Ano de Lançamento</label>
-                    <select id="movie-filter-year" class="movie-filter-select">
-                        <option value="">Todos os anos</option>
+                <div class="movie-filter-row-half">
+                    <div class="movie-filter-group half-width">
+                        <label class="movie-filter-label" for="movie-filter-year">Ano Lançamento</label>
+                        <select id="movie-filter-year" class="movie-filter-select">
+                            <option value="">Todos os anos</option>
 
-                        <!-- As opções de anos serão geradas por JavaScript -->
-                    </select>
+                            <!-- As opções de anos serão geradas por JavaScript -->
+                        </select>
+                    </div>
+
+                    <div class="movie-filter-group half-width">
+                        <label class="movie-filter-label" for="movie-filter-quantity">Qtd sorteada</label>
+                        <input type="number" id="movie-filter-quantity" class="movie-filter-input" min="1" max="5"
+                            value="1">
+                    </div>
                 </div>
 
                 <div class="movie-filter-group">
-                    <label class="movie-filter-label" for="movie-filter-quantity">Quantidade sorteada</label>
-                    <input type="number" id="movie-filter-quantity" class="movie-filter-input" min="1" max="5"
-                        value="1">
+                    <label class="movie-filter-label" for="movie-filter-director-mode">Diretor</label>
+                    <select id="movie-filter-director-mode" class="movie-filter-select">
+                        <option value="todos">Todos os diretores</option>
+                        <option value="digitar">Digitar nome...</option>
+                    </select>
+                    <input
+                        type="text"
+                        id="movie-filter-director-name"
+                        class="movie-filter-input movie-filter-director-input"
+                        placeholder="Ex: Christopher Nolan"
+                        style="display:none;"
+                    >
                 </div>
 
                 <div class="movie-filter-group">
@@ -143,7 +161,7 @@
         <div class="info-col-left">
             <h2 class="info-title">Visualize seus filmes salvos</h2>
             <p class="info-subtitle">Não perca nada! Salve os filmes sorteados nas suas listas.</p>
-            <button class="acessar-listas-btn"><a href="/frontend/views/AssistirMaisTarde.html">Acessar Listas</a></button>
+            <button class="acessar-listas-btn"><a href="/frontend/views/AssistirMaisTarde.html" class="requires-auth">Acessar Listas</a></button>
         </div>
         <div class="info-col-right">
         </div>
@@ -152,11 +170,13 @@
 
     <div class="divfooter">
         <footer>
-            <p>Créditos: Trabalho de Engenharia de Software - Curso de Análise e Desenvolvimento de Sistemas</p>
+            <p>Trabalho desenvolvido para o curso de Análise e Desenvolvimento de Sistemas da Fatec Americana Ministro Ralph Biasi.</p>
         </footer>
     </div>
     <script src="/frontend/shared/theme.js"></script>
-    <script src="/frontend/controllers/SorteioController.js"></script>
+    <script src="/frontend/controllers/SorteioController.js?v=2"></script>
+    <script src="/frontend/shared/auth.js"></script>
+    <script src="/frontend/shared/header.js?v=2"></script>
 </body>
 
 </html>

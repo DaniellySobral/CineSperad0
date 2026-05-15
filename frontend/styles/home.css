@@ -195,6 +195,60 @@
   padding-right: 20px;
 }
 
+/* Novos botões interativos do tutorial */
+.tutorial-list-links {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 35px;
+}
+
+.tutorial-list-links a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.tutorial-list-links a:hover {
+  transform: translateY(-5px);
+  opacity: 1;
+}
+
+.tutorial-list-links i {
+  width: 60px;
+  height: 60px;
+  background-color: var(--graButton); /* Cor cinza por padrão */
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.tutorial-list-links a:hover i {
+  background-color: var(--button); /* Muda para vinho no hover */
+  box-shadow: 0 6px 15px rgba(89, 0, 28, 0.3);
+}
+
+.tutorial-btn-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  /* Reseta estilos herdados de .step span se houver */
+  position: static !important;
+  transform: none !important;
+  background: transparent !important;
+  width: auto !important;
+  height: auto !important;
+  line-height: normal !important;
+}
+
 /* ===================================
    SEÇÃO DE CARDS "Funcionalidades"
    =================================== */

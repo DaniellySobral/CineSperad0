@@ -1,50 +1,103 @@
+/* ========================================================
+   sobreNos.css — Tela "Sobre Nós"
+   Depende de: utilitario.css (padding-top: 100px no main)
+   ======================================================== */
 
-/* ========================================
-   ESTRUTURA PRINCIPAL DA PÁGINA
-   ======================================== */
+/* FUNDO DA PÁGINA */
+body {
+    background-image: url('../assets/backgrounds/SobreNos.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* ----------------------------------------------------------
+   MAIN
+   O utilitario.css aplica padding-top:100px e flex-direction:column
+   Sobrescrevemos apenas o necessário para centralizar o card.
+   ---------------------------------------------------------- */
+main {
+    flex-direction: row !important;   /* sobrescreve column do utilitario */
+    justify-content: center;
+    align-items: flex-start;
+    /* padding-top: 100px (header fixo) + 10px (respiro) = 110px */
+    padding-top: 110px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+/* ----------------------------------------------------------
+   CARD PRINCIPAL
+   ---------------------------------------------------------- */
 .main-container {
-    display: flex;
-    min-height: 100vh;
-    padding-bottom: 150px; /* reserva espaço pro bloco vermelho */
-    position: relative;
-}
-
-/* ========================================
-   LADO ESQUERDO - PÔSTER
-   ======================================== */
-.poster-wall {
-    margin-left: 70px;
-}
-
-.poster img {
     width: 100%;
-    height: 580px;
-    object-fit: cover;
-}
-
-/* ========================================
-   LADO DIREITO - CONTEÚDO
-   ======================================== */
-.content-area {
-    width: 63%;
-    background-color: white;
-    padding: 30px;
+    /* sem max-width: o card ocupa toda a largura menos o padding do main (15px cada lado) */
+    background-color: #ffffff;
+    position: relative;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
+    overflow: visible;   /* a imagem da Amélie pode transbordar */
+}
+
+/* Botão X (fechar / voltar) */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 26px;
+    color: #555;
+    cursor: pointer;
+    z-index: 200;
+    line-height: 1;
+    transition: color 0.2s;
+}
+.close-btn:hover { color: #000; }
+
+/* ----------------------------------------------------------
+   SEÇÃO SUPERIOR (BRANCA) — pôster à esq. + texto à dir.
+   ---------------------------------------------------------- */
+.top-section {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+/* ESQUERDA: imagem do cinema */
+.poster-wall {
+    width: 33%;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+.poster-wall img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* DIREITA: título + parágrafos
+   padding-bottom grande para a imagem Amélie não cobrir o texto */
+.content-area {
+    flex: 1;
+    padding: 28px 45px 0px 28px;
+    box-sizing: border-box;
 }
 
 .sobre-nos-title {
-    font-size: 48px;
-    color: black;
-    margin-bottom: 40px;
+    font-size: 34px;
+    color: #111;
+    margin-bottom: 18px;
     font-weight: bold;
 }
 
 .description-text {
-    font-size: 17px;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.65;
     color: #333;
-    margin-bottom: 15px;
+    margin-bottom: 13px;
+    text-indent: 1em;
 }
 
 .highlight {
@@ -52,258 +105,124 @@
     font-weight: bold;
 }
 
-/* ========================================
-   ÁREA VERMELHA DE BOAS-VINDAS
-   ======================================== */
+/* ----------------------------------------------------------
+   IMAGEM DA AMÉLIE
+   Posicionada no canto inferior direito do .main-container,
+   sobrepondo tanto a área branca quanto a área vermelha.
+   ---------------------------------------------------------- */
+.welcome-area img {
+    position: absolute;
+    right: 35px;
+    bottom: 0;           /* base = rodapé do .main-container */
+    width: 270px;
+    height: 240px;       /* maior = sobe mais sobre a área branca */
+    object-fit: cover;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    z-index: 50;
+}
+
+/* ----------------------------------------------------------
+   ÁREA VERMELHA — boas-vindas
+   ---------------------------------------------------------- */
 .welcome-area {
     background-color: var(--accent-color);
     color: white;
-    padding: 25px 130px 25px 25px;
-    text-align: left;
-    position: absolute;
-    top: calc(580px + 0px);
-    left: 70px;
-    right: 70px;
-    width: auto;
-    height: 120px;
-    z-index: 10;
+    padding: 26px 35px;
     display: flex;
-    flex-direction: column;
-    justify-content: left;
+    justify-content: flex-start;
+    align-items: center;
+    height: 120px;       /* altura fixa — controla quanto da imagem fica na área vermelha */
+    box-sizing: border-box;
+    overflow: visible;
 }
 
-/* ========================================
-   IMAGEM DENTRO DA ÁREA VERMELHA
-   ======================================== */
-.welcome-area img {
-    position: absolute;
-    right: 30px;
-    top: -150px;
-    height: 240px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    z-index: 20;
+/* Texto da boas-vindas — metade esquerda, a Amélie fica à direita */
+.welcome-text-container {
+    width: 52%;
+    z-index: 1;
 }
 
-/* ========================================
-   TEXTOS DA ÁREA VERMELHA
-   ======================================== */
 .welcome-text-title {
-    font-size: 32px;
-    font-weight: 500;
-    text-align: left;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
 }
 
 .welcome-text {
-    font-size: 19px;
-    text-align: left;
+    font-size: 17px;
+    line-height: 1.4;
 }
 
-/* ========================================
-   RESPONSIVIDADE - DESKDOWN PARA MOBILE
-   ======================================== */
+/* ==========================================================
+   RESPONSIVIDADE — tablet (≤ 768px)
+   ========================================================== */
+@media (max-width: 768px) {
+    main {
+        padding: 10px !important;
+    }
 
-/* Tablets grandes (900px - 1200px) */
-@media (max-width: 1200px) {
-    /* Reduz margens e tamanhos para tablets grandes */
-    .poster-wall { margin-left: 40px; }
-    .poster img { height: 500px; }
-    .content-area { width: 60%; padding: 25px; }
-    .description-text { font-size: 15px; }
-    .sobre-nos-title { font-size: 40px; margin-bottom: 30px; }
-    
-    /* Ajusta área vermelha para nova altura do poster */
-    .welcome-area {
-        top: calc(500px + 0px);
-        left: 40px; right: 40px;
-        height: 110px;
-        padding: 20px 110px 20px 20px;
-        text-align: left;
-    }
-    
-    /* Reduz imagem proporcionalmente */
-    .welcome-area img {
-        height: 200px;
-        top: -130px;
-        right: 25px;
-    }
-    
-    .welcome-text-title { font-size: 28px; }
-    .welcome-text { font-size: 17px; }
-}
-
-/* Tablets médios (768px - 900px) */
-@media (max-width: 1024px) {
-    /* Ajustes finos para tablets médios */
-    .poster-wall { margin-left: 30px; }
-    .poster img { height: 450px; }
-    .content-area { width: 60%; padding: 25px; }
-    .sobre-nos-title { font-size: 36px; margin-bottom: 30px; }
-    .description-text { font-size: 14px; }
-    
-    .welcome-area {
-        top: calc(450px + 0px);
-        left: 30px; right: 30px;
-        height: 100px;
-        padding: 20px 100px 20px 20px;
-    }
-    
-    .welcome-area img {
-        height: 180px;
-        top: -120px;
-        right: 20px;
-    }
-    
-    .welcome-text-title { font-size: 28px; }
-    .welcome-text { font-size: 17px; }
-}
-
-/* Tablets pequenos (700px - 768px) - MUDANÇA DE LAYOUT */
-@media (max-width: 900px) {
-    /* Muda layout de horizontal para vertical */
-    .main-container {
+    .top-section {
         flex-direction: column;
-        margin-top: 120px;
     }
-    
-    /* Poster ocupa largura total */
+
     .poster-wall {
-        margin-left: 20px;
-        margin-right: 20px;
-        width: calc(100% - 40px);
-    }
-    
-    .poster img {
-        height: 350px;
         width: 100%;
+        height: 210px;
+        min-height: unset;
     }
-    
-    /* Conteúdo ocupa largura total */
+
     .content-area {
-        width: 100%;
-        padding: 25px;
-        margin: 0 20px;
+        /* padding-bottom reserva espaço para a Amélie não cobrir o texto */
+        padding: 22px 22px 200px 22px;
     }
-    
-    .sobre-nos-title { font-size: 32px; margin-bottom: 25px; }
-    .description-text { font-size: 15px; }
-    
-    /* ÁREA VERMELHA vira elemento relativo (não mais sobreposto) */
+
+    /* Amélie: centralizada, sobrepõe a divisa branca/vermelha */
+    .welcome-area img {
+        position: absolute;
+        right: 50%;
+        transform: translateX(50%);
+        bottom: auto;
+        top: -90px;          /* sobe 90px sobre a área vermelha */
+        width: 230px;
+        height: 175px;
+    }
+
+    /* Área vermelha: empurra conteúdo abaixo da imagem */
     .welcome-area {
-        position: relative;
-        top: auto; left: auto; right: auto;
-        width: 100%;
-        height: auto;
-        padding: 25px;
-        margin: 25px 20px;
-        display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
+        padding-top: 100px;  /* espaço para a Amélie que sobe */
+        padding-bottom: 22px;
     }
-    
-    /* Imagem dentro da área vermelha (não mais sobreposta) */
-    .welcome-area img {
-        position: relative;
-        top: auto; right: auto;
-        height: 180px;
-        width: 350px;
-        margin-bottom: 15px;
-        margin-top: 10px;
-        border-radius: 8px;
+
+    .welcome-text-container {
+        width: 100%;
     }
-    
-    .welcome-text-title { font-size: 26px; margin-bottom: 8px; }
-    .welcome-text { font-size: 16px; }
 }
 
-/* Celulares grandes (500px - 700px) */
-@media (max-width: 700px) {
-    .main-container { margin-top: 80px; }
-    
-    .poster-wall {
-        margin-left: 15px;
-        margin-right: 15px;
-        width: calc(100% - 30px);
+/* ==========================================================
+   RESPONSIVIDADE — mobile (≤ 480px)
+   ========================================================== */
+@media (max-width: 480px) {
+    main {
+        padding: 8px !important;
     }
-    
-    .poster img { height: 280px; }
-    
-    .content-area {
-        padding: 20px;
-        margin: 0 15px;
-    }
-    
-    .sobre-nos-title { font-size: 28px; margin-bottom: 20px; }
-    .description-text { font-size: 15px; }
-    
-    .welcome-area {
-        padding: 20px;
-        margin: 20px 15px;
-    }
-    
-    /* Imagem retangular (não circular) */
-    .welcome-area img {
-        height: 100px;
-        width: 200px;
-        border-radius: 8px;
-        margin: 10px auto 15px auto;
-    }
-    
-    .welcome-text-title { font-size: 24px; }
+
+    .sobre-nos-title  { font-size: 24px; }
+    .description-text { font-size: 13px; }
+    .welcome-text-title { font-size: 21px; }
     .welcome-text { font-size: 15px; }
-}
 
-/* Celulares pequenos (até 500px) */
-@media (max-width: 500px) {
-    .main-container { margin-top: 70px; }
-    
-    .poster-wall {
-        margin-left: 10px;
-        margin-right: 10px;
-        width: calc(100% - 20px);
-    }
-    
-    .poster img { height: 220px; }
-    
-    .content-area {
-        padding: 15px;
-        margin: 0 10px;
-    }
-    
-    .sobre-nos-title { font-size: 24px; margin-bottom: 15px; }
-    .description-text { font-size: 14px; }
-    
-    .welcome-area {
-        padding: 15px;
-        margin: 15px 10px;
-    }
-    
-    /* Imagem retangular menor */
+    .poster-wall { height: 170px; }
+
     .welcome-area img {
-        height: 80px;
-        width: 160px;
-        border-radius: 8px;
-        margin: 10px auto 10px auto;
-    }
-    
-    .welcome-text-title { font-size: 20px; }
-    .welcome-text { font-size: 14px; }
-}
-
-
-/* ========================================
-   AJUSTES FINOS E OTIMIZAÇÃO
-   ======================================== */
-/* Garante que nada fique cortado em telas pequenas */
-@media (max-width: 900px) {
-    .main-container { overflow-x: hidden; }
-    
-    .poster-wall, .content-area, .welcome-area {
-        max-width: 100%;
-        box-sizing: border-box;
+        width: 185px;
+        height: 140px;
+        top: -70px;
     }
 
+    .welcome-area { padding-top: 80px; }
 
+    .content-area { padding-bottom: 160px; }
 }
