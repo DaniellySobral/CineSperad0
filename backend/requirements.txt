@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+sqlalchemy
+bcrypt
+passlib[bcrypt]
+python-jose[cryptography]
+pydantic[email]
+python-multipart
+google-auth
+requests
+dnspython
+disposable-email-domains
+httpx
+python-dotenv
