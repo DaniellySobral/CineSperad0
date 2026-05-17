@@ -19,7 +19,7 @@ from sqlalchemy.orm import Session
 from datetime import timedelta
 
 from database import get_db
-from models.user_model import UserCreate, UserResponse, Token, UserLogin, GoogleToken, UserUpdate, ForgotPasswordRequest, ResetPasswordRequest
+from models.user_model import UserCreate, UserResponse, Token, UserLogin, GoogleToken, UserUpdate, ForgotPasswordRequest, ResetPasswordRequest, ChangePasswordRequest
 from controllers import auth_controller
 
 router = APIRouter(
@@ -137,6 +137,40 @@ def update_me(user_update: UserUpdate, current_user: auth_controller.User = Depe
 # ============================================================
 # 3. RECUPERAÇÃO DE ACESSO
 # ============================================================
+
+@router.put("/change-password")
+def change_password(
+    request: ChangePasswordRequest,
+    current_user: auth_controller.User = Depends(auth_controller.get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Troca a senha do usuário autenticado após verificar a senha atual."""
+    # Bloqueia usuários Google que não possuem senha convencional
+    if current_user.password_hash == "google_sso_user_no_password":
+        raise HTTPException(
+            status_code=400,
+            detail="Usuários autenticados via Google não possuem senha para alterar."
+        )
+
+    # Verifica se a senha atual está correta
+    if not auth_controller.verify_password(request.current_password, current_user.password_hash):
+        raise HTTPException(
+            status_code=400,
+            detail="Senha atual incorreta."
+        )
+
+    # Validação básica da nova senha
+    if len(request.new_password) < 6:
+        raise HTTPException(
+            status_code=400,
+            detail="A nova senha deve ter pelo menos 6 caracteres."
+        )
+
+    # Aplica o novo hash e persiste
+    current_user.password_hash = auth_controller.get_password_hash(request.new_password)
+    db.commit()
+    return {"message": "Senha alterada com sucesso!"}
+
 
 @router.post("/forgot-password")
 def forgot_password(request: ForgotPasswordRequest, db: Session = Depends(get_db)):

@@ -38,7 +38,7 @@
     <div class="config-card">
 
       <!-- BOTÃO PARA FECHAR (NOVO) -->
-      <button class="close-settings-button" title="Fechar">&times;</button>
+      <button class="close-settings-button" id="closeSettingsBtn" title="Fechar">&times;</button>
 
       <div class="form-container">
 
@@ -50,35 +50,38 @@
         <div class="field-group">
           <label for="email">E-mail</label>
           <div class="input-wrapper">
-            <input type="email" id="email" class="custom-input" value="fulano@email.com" readonly>
-            <button class="edit-button">Editar</button>
+            <input type="email" id="email" class="custom-input" value="" readonly>
+            <button class="edit-button" id="editEmailBtn">Editar</button>
           </div>
           <!-- Elemento para a mensagem de erro de e-mail -->
           <span class="error-message" id="email-error"></span>
         </div>
 <!-- CAMPO SENHA ATUAL -->
         <div class="field-group">
-          <label for="nome">Digite sua senha atual</label>
+          <label for="senhaAtual">Digite sua senha atual</label>
           <div class="input-wrapper">
-            <input type="text" id="nome" class="custom-input" value="******" readonly>
-            <button class="edit-button">Editar</button>
+            <input type="password" id="senhaAtual" class="custom-input" value="******" readonly>
+            <button class="edit-button" id="editSenhaAtualBtn">Editar</button>
           </div>
+          <span class="error-message" id="error-senhaAtual"></span>
         </div>
         <!-- CAMPO SENHA NOVA -->
         <div class="field-group">
-          <label for="nome">Digite a nova senha</label>
+          <label for="novaSenha">Digite a nova senha</label>
           <div class="input-wrapper">
-            <input type="text" id="nome" class="custom-input" value="******" readonly>
-            <button class="edit-button">Editar</button>
+            <input type="password" id="novaSenha" class="custom-input" value="******" readonly>
+            <button class="edit-button" id="editNovaSenhaBtn">Editar</button>
           </div>
+          <span class="error-message" id="error-novaSenha"></span>
         </div>
         <!-- CAMPO SENHA NOVA CONFIRMAÇÃO -->
         <div class="field-group">
-          <label for="nome">Digite a nova senha novamente</label>
+          <label for="confirmarSenha">Digite a nova senha novamente</label>
           <div class="input-wrapper">
-            <input type="text" id="nome" class="custom-input" value="******" readonly>
-            <button class="edit-button">Editar</button>
+            <input type="password" id="confirmarSenha" class="custom-input" value="******" readonly>
+            <button class="edit-button" id="editConfirmarSenhaBtn">Editar</button>
           </div>
+          <span class="error-message" id="error-confirmarSenha"></span>
         </div>
 
         <!-- Tema -->
@@ -89,8 +92,11 @@
           <label><input type="radio" name="theme" value="dark"> Escuro</label>
         </div>
 
+        <!-- Erro global -->
+        <span class="error-message" id="error-global" style="display:none;"></span>
+
         <!-- Botão salvar -->
-        <button class="save-button">Salvar mudanças</button>
+        <button class="save-button" id="btnAlterarSenha">Salvar mudanças</button>
       </div>
     </div>
   </div>
@@ -104,7 +110,7 @@
     </footer>
   </div>
   <script src="/frontend/shared/theme.js"></script>
-  <script src="/frontend/controllers/ConfiguracoesController.js"></script>
+  <script src="/frontend/controllers/TrocarSenhaController.js"></script>
   <script src="/frontend/shared/header.js"></script>
 </body>
 

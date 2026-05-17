@@ -62,6 +62,11 @@ class UserUpdate(BaseModel):
     email: Optional[EmailStr] = None
     picture_url: Optional[str] = None
 
+class ChangePasswordRequest(BaseModel):
+    """Dados para troca de senha autenticada (usuário logado)."""
+    current_password: str
+    new_password: str
+
 class ForgotPasswordRequest(BaseModel):
     """Solicitação de link de recuperação."""
     email: EmailStr

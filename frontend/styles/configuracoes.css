@@ -415,3 +415,10 @@ body.dark-theme .modal-header { border-color: #333; }
 body.dark-theme .modal-footer { border-color: #333; }
 body.dark-theme .modal-header h3 { color: #fff; }
 body.dark-theme .modal-btn.cancel { background-color: #333; color: #ccc; }
+
+/* Botão Salvar desabilitado */
+.save-button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
