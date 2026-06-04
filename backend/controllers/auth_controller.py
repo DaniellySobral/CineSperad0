@@ -51,7 +51,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 SECRET_KEY = os.getenv("JWT_SECRET_KEY", "chave_secreta_provisoria_cinesperado")
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60
+ACCESS_TOKEN_EXPIRE_MINUTES = 4300
 
 def get_password_hash(password: str) -> str:
     """Transforma a senha em texto plano em um hash seguro e irreversível."""

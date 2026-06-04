@@ -238,7 +238,7 @@
 
 .tutorial-btn-label {
   font-size: 13px;
-  color: var(--text-secondary);
+  color: var(--text-secondary) !important;
   font-weight: 600;
   /* Reseta estilos herdados de .step span se houver */
   position: static !important;

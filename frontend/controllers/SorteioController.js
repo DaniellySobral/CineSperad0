@@ -165,7 +165,8 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function criarSlidesDinamicamente(filmes) {
         const slideshowContainer = document.querySelector('.slideshow-container');
-        
+        const token = localStorage.getItem('cinesperado_token');
+
         // Limpeza de sorteios anteriores
         const oldSlides = slideshowContainer.querySelectorAll('.slide');
         oldSlides.forEach(s => s.remove());
@@ -217,7 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // ============================================================
             
             const actionsDiv = slide.querySelector('.movie-actions');
-            const token = localStorage.getItem('cinesperado_token');
 
             /**
              * Cria um botão de ação com verificação de login integrada.
